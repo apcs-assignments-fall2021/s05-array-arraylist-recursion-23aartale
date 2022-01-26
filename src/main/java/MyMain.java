@@ -235,20 +235,21 @@ public class MyMain {
         else if (mat[row][col] == '*') {
             return false;
         }
-        else if (mat[row][col] == ' '){
-            // Leave "breadcrumbs"
+
+        else if (mat[row][col] == 'f'){
+            return true;
+        }
+        else{
             mat[row][col] = '*';
 
             // Visit our neighbors (left, up, right, down)
-            floodFill(mat, row, col-1);
-            floodFill(mat, row-1, col);
-            floodFill(mat, row, col+1);
-            floodFill(mat, row+1, col);
-            }
+            boolean b1 = escape(mat, row, col-1);
+            boolean b2 = escape(mat, row-1, col);
+            boolean b3 = escape(mat, row, col+1);
+            boolean b4 = escape(mat, row+1, col);
 
-        else{
-            return true;
-        }
+            return (b1 || b2 || b3 || b4);
+            }
     }
 
 
